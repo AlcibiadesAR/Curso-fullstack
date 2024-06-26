@@ -46,7 +46,7 @@ function eliminartusTareas(indice) {
 
 function marcartusTareas(indice) {
   if (indice >= 0 && indice <= tusTareas.length) {
-    tusTareas[indice].completada = true;
+    tusTareas[indice].culminada = true;
     console.log("Tarea marcada con exito");
   } else {
     console.log("Indice de tarea invalido");
@@ -74,6 +74,44 @@ function modificartusTareas(
   }
 }
 
+function filtrarCategoria(numeroDeCategoria) {
+  let tareasFiltradas = tusTareas.filter(function (tareas) {
+    return tareas.categoria === numeroDeCategoria;
+  });
+  return tareasFiltradas;
+}
+
+function contarTareasCompletadasPorCategoria(numeroCategoria) {
+  let tareaCategoria = filtrarCategoria(numeroCategoria);
+  let tareasCompletada = tareaCategoria.reduce(function (contador, tarea) {
+    return tarea.culminada ? contador + 1 : contador;
+  }, 0);
+  let tareaTotal = tareaCategoria.length;
+  console.log(
+    "Tareas completadas de la categoria " +
+      numeroCategoria +
+      ": " +
+      tareasCompletada +
+      " de " +
+      tareaTotal +
+      " tareas!"
+  );
+}
+
+function mostrarTareasNoCompletadas() {
+  console.log("Tareas no completadas: ");
+  tusTareas.forEach(function (tarea) {
+    if (!tarea.culminada) {
+      console.log(
+        "- nombre: " +
+          tarea.nombre +
+          ", categoria: " +
+          categoria[tarea.categoria]
+      );
+    }
+  });
+}
+
 function mostrarMenu() {
   console.log("---Menu---");
   console.log("1. Agregar tarea");
@@ -83,6 +121,9 @@ function mostrarMenu() {
   console.log("5. Mostrar todas las Tareas");
   console.log("6. Mostrar todas las categorias");
   console.log("7. Agregar categoria");
+  console.log("8. Filtrar tareas por categoria");
+  console.log("9. Mostrar todas las tareas completadas por categoria");
+  console.log("10. Mostrar todas las tareas no completadas");
   console.log("0. Salir");
 }
 
@@ -117,34 +158,40 @@ function interactuarConUsuario() {
         if (indice >= 0 && indice < tusTareas.length) {
           let opcion = parseInt(
             prompt(
-              "¿Que propiedad desea modificar? 1. nombre, 2. fecha, 3. numero de categoria"
+              "¿Qué propiedad desea modificar? 1. nombre, 2. fecha, 3. número de categoría: "
             )
           );
           switch (opcion) {
             case 1:
-              let nombreNuevo = prompt("Ingrese el nuevo nombre de tu tarea: ");
+              let nombreNuevo = prompt("Ingrese el nuevo nombre de la tarea: ");
               modificartusTareas(indice, nombreNuevo);
               break;
             case 2:
-              let fechaNueva = prompt("Ingrese la nueva fecha de tu tarea: ");
+              let fechaNueva = prompt("Ingrese la nueva fecha de la tarea: ");
               modificartusTareas(indice, undefined, fechaNueva);
               break;
             case 3:
-              let categoriaNueva = parseInt(prompt(
-                "Ingrese la nueva categoria de tu tarea: "
-              ));
+              let categoriaNueva = parseInt(
+                prompt("Ingrese el nuevo número de categoría de la tarea: ")
+              );
               if (categoriaNueva >= 0 && categoriaNueva < categoria.length) {
-                modificartusTareas(indice, undefined, undefined, categoriaNueva);
+                modificartusTareas(
+                  indice,
+                  undefined,
+                  undefined,
+                  categoriaNueva
+                );
+              } else {
+                console.log("Número de categoría incorrecto!");
               }
               break;
             default:
-              console.log("Numero de indice incorrecto");
+              console.log("Opción incorrecta");
               break;
           }
         } else {
-          console.log("Numero de indice incorrecto!!");
+          console.log("Número de índice incorrecto!!");
         }
-        modificartusTareas(indice, nuevaTarea);
         break;
       case 5:
         console.log("---Lista de tus tusTareas---");
@@ -158,6 +205,25 @@ function interactuarConUsuario() {
           "Ingrese el nombre de la nueva categoria a agregar: "
         );
         AgregarCategorias(nuevaCategoria);
+        break;
+      case 8:
+        mostrarCategorias();
+        let numeroCategoria = parseInt(
+          prompt("Ingrese el numero de la categoria que desea filtrar: ")
+        );
+        let tareaFitradaPorCategoria = filtrarCategoria(numeroCategoria);
+        console.log("Tarea de la categoria seleccionada: ");
+        console.log(tareaFitradaPorCategoria);
+        break;
+      case 9:
+        mostrarCategorias();
+        let numeroDeLaCategoria = parseInt(
+          prompt("Ingrese el numero de la categoria a mostrar: ")
+        );
+        contarTareasCompletadasPorCategoria(numeroDeLaCategoria);
+        break;
+      case 10:
+        mostrarTareasNoCompletadas();
         break;
       default:
         console.log("!Opcion no valida!");
