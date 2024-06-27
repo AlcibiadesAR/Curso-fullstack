@@ -1,6 +1,6 @@
 // Matrices
 
-// 1. Gastos por semana
+// 1. Gastos por semana - por fila
 let controlDeGastos = [
   [30, 50, 45, 55, 40, 60, 35],
   [32, 48, 47, 52, 42, 58, 38],
@@ -22,7 +22,7 @@ console.log(
   `Su gasto de la semana es de: $${totalDeSemana(controlDeGastos, 2)}`
 );
 
-// 2. Gastos de un día de la semana
+// 2. Gastos de un día de la semana - por columna
 
 function totalDelDia(matriz, dia) {
   let totalDia = 0;
@@ -63,6 +63,3 @@ function gastosSemanales(matriz, Callbacks) {
 function mostrarTotalDeGastos(resultado) {
     console.log(resultado);
 }
-
-
-gastosSemanales(controlDeGastos, mostrarTotalDeGastos)
