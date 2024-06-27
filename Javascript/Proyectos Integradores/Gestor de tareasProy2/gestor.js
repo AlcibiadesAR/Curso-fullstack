@@ -112,6 +112,47 @@ function mostrarTareasNoCompletadas() {
   });
 }
 
+function ordenarTareasPorElNombre() {
+  for (let i = 0; i < tusTareas.length; i++) {
+    for (let j = 0; j < tusTareas.length - 1; j++) {
+      if (tusTareas[j].nombre > tusTareas[j + 1].nombre) {
+        let temp = tusTareas[j];
+        tusTareas[j] = tusTareas[j + 1];
+        tusTareas[j + 1] = temp;
+      }
+    }
+  }
+}
+
+function ordenarTareasPorLaFecha() {
+  for (let i = 0; i < tusTareas.length; i++) {
+    for (let j = 0; j < tusTareas.length - 1; j++) {
+      if (tusTareas[j].fecha > tusTareas[j + 1].fecha) {
+        let temp = tusTareas[j];
+        tusTareas[j] = tusTareas[j + 1];
+        tusTareas[j + 1] = temp;
+      }
+    }
+  }
+}
+
+function buscarTareaPorElNombre(nombre) {
+  let inicio = 0;
+  let final = tusTareas.length - 1;
+
+  while (inicio <= final) {
+    let elementoMedio = Math.round((inicio + final) / 2);
+    if (tusTareas[elementoMedio].nombre === nombre) {
+      return elementoMedio;
+    } else if (tusTareas[elementoMedio].nombre < nombre) {
+      inicio = elementoMedio + 1;
+    } else {
+      fin = elementoMedio - 1;
+    }
+  }
+  return -1;
+}
+
 function mostrarMenu() {
   console.log("---Menu---");
   console.log("1. Agregar tarea");
@@ -124,6 +165,9 @@ function mostrarMenu() {
   console.log("8. Filtrar tareas por categoria");
   console.log("9. Mostrar todas las tareas completadas por categoria");
   console.log("10. Mostrar todas las tareas no completadas");
+  console.log("11. Ordenar las tareas alfabeticamente");
+  console.log("12. Ordenar las tareas por fecha");
+  console.log("13. Buscar las tareas por nombre");
   console.log("0. Salir");
 }
 
@@ -224,6 +268,26 @@ function interactuarConUsuario() {
         break;
       case 10:
         mostrarTareasNoCompletadas();
+        break;
+      case 11:
+        ordenarTareasPorElNombre();
+        console.log("Tareas por nombre: ");
+        console.log(tusTareas);
+        break;
+      case 12:
+        ordenarTareasPorLaFecha();
+        console.log("Tareas por fecha: ");
+        console.log(tusTareas);
+        break;
+      case 13:
+        ordenarTareasPorElNombre();
+        let nombreBuscado = prompt("Ingres nombre de la tarea a buscar: ");
+        let indiceTarea = buscarTareaPorElNombre(nombreBuscado);
+        if (indiceTarea !== -1) {
+          console.log(`Tarea encontrada en el indice: ${indiceTarea}`);
+        } else {
+          console.log("Tarea no encontrada");
+        }
         break;
       default:
         console.log("!Opcion no valida!");
