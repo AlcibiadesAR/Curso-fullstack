@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Proyecto Digital House</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/boxicons@latest/css/boxicons.min.css"
+    />
+  </head>
+  <body>
+    <div id="container">
+      <h1>LOGIN</h1>
+      <form id="login">
+        <div>
+          <input
+            type="text"
+            id="nombre"
+            name="nombre"
+            placeholder="Username"
+            required
+            autocomplete="off"
+          />
+          <i class='bx bxs-user' id="bxs-user"></i>
+        </div>
+        <br />
+
+        <div>
+        <input
+        type="password"
+        id="password"
+        name="password"
+        placeholder="password"
+        required
+          autocomplete="off"
+        />
+        <i class='bx bxs-lock-alt' id="bxs-lock-alt"></i>
+        </div>
+        <br />
+
+        <div id="container-checkbox">
+            <input type="checkbox" name="RememberMe" id="RememberMe" required />
+            <label for="checkbox" id="Remember">Remember me</label>
+            <span id="forgot"> Forgot password?</span>
+        </div>
+
+        <br />
+        <input type="submit" value="login" />
+        <br />
+        <p id="register">
+          Don't have an account? <span id="register">Register</span>
+        </p>
+      </form>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>
