@@ -95,3 +95,5 @@ function busquedaBinaria(array, temaABuscar) {
 
 let resultado2 = busquedaBinaria(temasMusicales, "Uptown Funk");
 console.log(resultado2);
+
+

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CALCULADORA</title>
+</head>
+<body>
+    <form id="calcForm">
+        <input type="text" id="input1" placeholder="Ingrese el 1er numero"> <br>
+        <input type="text" id="input2" placeholder="Ingrese el 2do numero"><br>
+        <br>
+        <button type="button" onclick="realizarOperacion('sumar')">sumar</button>
+        <button type="button" onclick="realizarOperacion('restar')">restar</button>
+        <button type="button" onclick="realizarOperacion('multiplicar')">multiplicar</button>
+        <button type="button" onclick="realizarOperacion('dividir')">dividir</button>
+    </form>
+
+    <p id="res"></p>
+
+    <script src="/Javascript/POO/calc.js"></script>
+</body>
+</html>

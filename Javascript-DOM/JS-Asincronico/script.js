@@ -4,7 +4,6 @@
 .then(resp => resp.json())
 .then(json => console.log(json))*/
 
-
 //async/ await
 
 /*const promise = async() => {
@@ -24,9 +23,8 @@ promise();*/
 
 // async/ await con fetch
 
-
-const comic = async () =>{
-    try{
+ const comic = async () =>{
+ try{
         const response = await fetch('https://jsonplaceholder.typicode.com/posts/1/comments');
         
         if (!response.ok) {
@@ -41,3 +39,4 @@ const comic = async () =>{
 }
 
 comic();
+
